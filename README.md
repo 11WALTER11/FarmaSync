@@ -1,6 +1,7 @@
 # FarmaSync - Data Driven Farming
 
-![FarmaSync Logo](path/to/your/logo.png)
+![Screenshot_2023-11-24_195954-transformed](https://github.com/11WALTER11/FarmaSync/assets/81313264/3c0fe970-6983-4175-aca3-234bed42813a)
+
 
 FarmaSync is an innovative solution for data-driven farming, providing real-time monitoring of essential agricultural metrics. The project integrates sensors to collect data on NPK levels, soil moisture, and humidity, empowering farmers with actionable insights for optimal crop management.
 
