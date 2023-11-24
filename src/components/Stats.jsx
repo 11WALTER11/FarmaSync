@@ -70,7 +70,7 @@ const Stats = () => {
                         <div className="row">
                           <div className="col">
                             <h5 className="card-title text-uppercase text-muted mb-0">
-                              Lorem Ipsum
+                              Nitrogen Level
                             </h5>
                             <span className="h2 font-weight-bold mb-0">
                               924 %
@@ -97,7 +97,7 @@ const Stats = () => {
                         <div className="row">
                           <div className="col">
                             <h5 className="card-title text-uppercase text-muted mb-0">
-                              Lorem Ipsum
+                              Phosphorus Level
                             </h5>
                             <span className="h2 font-weight-bold mb-0">
                               49,65%
