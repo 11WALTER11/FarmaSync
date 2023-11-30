@@ -4,6 +4,7 @@ import random
 import time
 from dotenv import load_dotenv
 import os
+from datetime import datetime
 
 load_dotenv()
 
@@ -22,23 +23,23 @@ iot_client = boto3.client(
 )
 
 def simulate_sensor_data():
-    # Simulate NPK sensor data
-    nitrogen = random.uniform(0, 100)
-    phosphorus = random.uniform(0, 100)
-    potassium = random.uniform(0, 100)
+    # Simulate NPK sensor data with two decimal places
+    nitrogen = round(random.uniform(0, 100), 2)
+    phosphorus = round(random.uniform(0, 100), 2)
+    potassium = round(random.uniform(0, 100), 2)
 
-    # Simulate soil moisture sensor data
-    soil_moisture = random.uniform(0, 100)
+    # Simulate soil moisture sensor data with two decimal places
+    soil_moisture = round(random.uniform(0, 100), 2)
 
-    # Simulate humidity sensor data
-    humidity = random.uniform(0, 100)
+    # Simulate humidity sensor data with two decimal places
+    humidity = round(random.uniform(0, 100), 2)
 
     sensor_data = {
         'nitrogen': nitrogen,
         'phosphorus': phosphorus,
         'potassium': potassium,
         'soil_moisture': soil_moisture,
-        'humidity': humidity
+        'humidity': humidity,
     }
 
     return sensor_data
