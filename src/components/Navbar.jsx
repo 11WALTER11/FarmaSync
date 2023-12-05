@@ -3,11 +3,18 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-sm navbar-light bg-light shadow fixed">
       <div className="container-fluid">
         <Link to="/">
-          <a className="navbar-brand" href="#">
-            FarmaSync- Data Driven Farming
+          <a className="navbar-brand d-flex align-items-center" href="#">
+            <img
+              src={"/logo.png"}
+              alt="FarmaSync Logo"
+              width="80"
+              height="50"
+              className="d-inline-block align-top"
+            />
+            <span className="ms-0">FarmaSync- Data Driven Farming</span>
           </a>
         </Link>
         <button
@@ -25,38 +32,6 @@ const Navbar = () => {
               <Link to="/DiseaseDetector">
                 <a className="nav-link" href="#">
                   Disease Detector
-                </a>
-              </Link>
-            </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="languageDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Select Language
-              </a>
-              <ul className="dropdown-menu" aria-labelledby="languageDropdown">
-                <li>
-                  <a className="dropdown-item" href="#">
-                    English
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Español
-                  </a>
-                </li>
-                {/* Add more language options as needed */}
-              </ul>
-            </li>
-            <li className="nav-item">
-              <Link to="AboutUs">
-                <a className="nav-link" href="#">
-                  About us
                 </a>
               </Link>
             </li>

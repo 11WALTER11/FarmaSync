@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import ContentLoader from "react-loading-placeholder";
 
 const ActionPlan = () => {
-  const [data, setData] = useState(null);
+  const [sensorData, setSensorData] = useState(null);
+  const [actionPlan, setActionPlan] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/palm2-data");
-      const palm2Data = response.data.palm2ApiResponse;
-      setData(palm2Data);
+      const response = await axios.get("http://localhost:3000/chatgpt-data");
+      const chatGPTData = response.data;
+
+      // Destructuring the response data
+      const { sensorData, actionPlan } = chatGPTData;
+
+      setSensorData(sensorData);
+      setActionPlan(actionPlan);
     } catch (error) {
       setError("Error fetching data");
     } finally {
@@ -19,30 +26,51 @@ const ActionPlan = () => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []); // Empty dependency array ensures useEffect runs only once on component mount
+    // Fetch data only during the initial render
+    if (!sensorData && !actionPlan) {
+      fetchData();
+    }
+  }, []);
 
   const handleGenerateNewResults = () => {
     setLoading(true);
+    setSensorData(null);
+    setActionPlan(null);
     fetchData();
   };
 
   return (
     <>
-      <div className="container d-flex justify-content-start p-4">
-        <div className="bg-light col-12" style={{ height: "400px" }}>
-          <h3 className="text-center">Action Plan</h3>
-          {loading && <p>Loading...</p>}
+      <div className="container d-flex justify-content-start p-4 ">
+        <div
+          className="bg-light col-12 shadow p-4 "
+          style={{ height: "auto", whiteSpace: "pre-line" }}
+        >
+          <h3 className="text-center p-2">Action Plan</h3>{" "}
+          {loading && (
+            <ContentLoader
+              isLoading={loading}
+              backgroundColor="#f5f5f5"
+              foregroundColor="#dbdbdb"
+            >
+              <p>Loading...</p>
+            </ContentLoader>
+          )}
           {error && <p>Error: {error}</p>}
-          {data && (
+          {sensorData && (
             <>
-              <ul>
-                {/* Display each action as a separate list item */}
-                {data.candidates[0].output.split(". ").map((action, index) => (
-                  <li key={index}>{action}</li>
-                ))}
-              </ul>
-              <button onClick={handleGenerateNewResults}>
+              {/* Display the sensor data */}
+              <p>{JSON.stringify(sensorData.actionPlan, null, 2)}</p>
+            </>
+          )}
+          {actionPlan && (
+            <>
+              {/* Display the action plan with preserved line breaks */}
+              <p className="mx-2">{actionPlan}</p>
+              <button
+                onClick={handleGenerateNewResults}
+                className="text-white bg-dark btn btn-sm "
+              >
                 Generate New Results
               </button>
             </>
