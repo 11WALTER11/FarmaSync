@@ -25,9 +25,20 @@ const openai = new OpenAI({
 // Functions
 
 const generatePrompt = (sensorData) => {
-  return `Provide an action plan for the farmer only based on this sensor data dont give any other useless information on your own :\n${JSON.stringify(
-    sensorData
-  )}`;
+  const { sample_time_formatted, device_data } = sensorData;
+  const { humidity, potassium, soil_moisture, nitrogen, phosphorus } =
+    device_data;
+
+  const prompt = `Provide a practical action plan for the farmer based on the most recent sensor data:\n
+    - Sample Time: ${sample_time_formatted}
+    - Humidity: ${humidity}%
+    - Potassium Level: ${potassium}%
+    - Soil Moisture: ${soil_moisture}%
+    - Nitrogen Level: ${nitrogen}%
+    - Phosphorus Level: ${phosphorus}%\n
+    Suggest specific actions to optimize crop growth and yield. Please avoid including any extraneous or unnecessary information. you have to talk in first person to farmer and suggest what to do in easy way`;
+
+  return prompt;
 };
 
 const sendToChatGPT = async (sensorData) => {

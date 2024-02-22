@@ -24,15 +24,17 @@ iot_client = boto3.client(
 
 def simulate_sensor_data():
     # Simulate NPK sensor data with two decimal places
-    nitrogen = round(random.uniform(0, 100), 2)
-    phosphorus = round(random.uniform(0, 100), 2)
-    potassium = round(random.uniform(0, 100), 2)
+    nitrogen = round(random.uniform(10, 50), 2)  # Typical range for nitrogen in soil
+    phosphorus = round(random.uniform(5, 30), 2)  # Typical range for phosphorus in soil
+    potassium = round(random.uniform(20, 80), 2)  # Typical range for potassium in soil
 
     # Simulate soil moisture sensor data with two decimal places
-    soil_moisture = round(random.uniform(0, 100), 2)
+    # Soil moisture might vary between 20% (dry) and 80% (wet)
+    soil_moisture = round(random.uniform(20, 80), 2)
 
     # Simulate humidity sensor data with two decimal places
-    humidity = round(random.uniform(0, 100), 2)
+    # Humidity typically ranges from 30% to 70%
+    humidity = round(random.uniform(30, 70), 2)
 
     sensor_data = {
         'nitrogen': nitrogen,
