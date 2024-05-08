@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ContentLoader from "react-loading-placeholder";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const ActionPlan = () => {
   const [sensorData, setSensorData] = useState(null);
@@ -75,15 +76,7 @@ const ActionPlan = () => {
           style={{ height: "auto", whiteSpace: "pre-line" }}
         >
           <h3 className="text-center p-2">Action Plan</h3>{" "}
-          {loading && (
-            <ContentLoader
-              isLoading={loading}
-              backgroundColor="#f5f5f5"
-              foregroundColor="#dbdbdb"
-            >
-              <p>Loading...</p>
-            </ContentLoader>
-          )}
+          {loading && <Skeleton count={10} />}
           {error && <p>Error: {error}</p>}
           {sensorData && (
             <>
@@ -97,7 +90,7 @@ const ActionPlan = () => {
               <p className="mx-2">{actionPlan}</p>
               <button
                 onClick={handleGenerateNewResults}
-                className="text-white bg-dark btn btn-sm "
+                className="text-white bg-dark btn btn-sm me-2"
               >
                 Generate New Results
               </button>
@@ -115,11 +108,11 @@ const ActionPlan = () => {
             </div>
           )}
           {translatedActionPlan && !translating && (
-            <div className="mt-2">
-              <p className="mx-2">{translatedActionPlan}</p>
+            <div className="mt-2 ">
+              <p className="mx-2 ">{translatedActionPlan}</p>
               <button
                 onClick={handleGenerateNewResults}
-                className="text-white bg-dark btn btn-sm "
+                className="text-white bg-dark btn btn-sm"
               >
                 नए परिणाम उत्पन्न करें
               </button>
